@@ -1,0 +1,13 @@
+
+
+.jumbotron {
+   
+    background-color:black;
+    /* margin: auto; */
+    margin-top: 15vh;
+    color: white;
+}
+
+.background {
+    align-content: center;
+}

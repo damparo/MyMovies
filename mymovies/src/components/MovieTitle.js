@@ -1,9 +1,13 @@
 import React from "react";
+import "../styles/movietitle.css";
 
 function MovieTitle() {
   return (
-     <h5>Movie List</h5>
-  
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container background">
+        <h1 className="display-4">Movie List</h1>
+      </div>
+    </div>
   );
 }
 
