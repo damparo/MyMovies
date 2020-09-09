@@ -1,17 +1,8 @@
-import React from 'react';
-import MovieTitle from "./components/MovieTitle";
-import MovieBank from './components/MovieBank';
-import AddMovie from './components/AddMovie';
-
+import React from "react";
+import OmdbContainer from "./components/OmdbContainer";
 
 function App() {
-  return (
-    <div className="container">
-            <MovieTitle />
-            <MovieBank />
-            <AddMovie />
-    </div>
-  );
+  return <OmdbContainer />;
 }
 
 export default App;
