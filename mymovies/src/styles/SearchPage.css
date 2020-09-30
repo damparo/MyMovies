@@ -1,0 +1,25 @@
+.container {
+    margin-top: 10vh;
+   
+}
+
+.title{
+text-align: center;
+font-size: 2.5rem;
+}
+
+form{ 
+    margin-top: 2vh;
+}
+
+.col-2{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.col-8{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.search {
+    width: 100%;
+}

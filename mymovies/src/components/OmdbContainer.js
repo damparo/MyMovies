@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MovieResults from "./MovieResults";
 import SearchForm from "./SearchForm";
 import API from "../utils/API";
+import "../styles/SearchPage.css";
 
 class OmdbContainer extends Component {
   state = {
@@ -37,14 +38,10 @@ class OmdbContainer extends Component {
     return (
 
       
-      <div>
+      <div className="container d-flex flex-column align-content-center">
 
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-  </div>
-</div>        
+    <h1 className="display-4 title">myList: Movies </h1>
+       
         <SearchForm
           value={this.state.search}
           handleInputChange={this.handleInputChange}
