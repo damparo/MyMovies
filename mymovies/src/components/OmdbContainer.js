@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import MovieResults from "./MovieResults";
 import SearchForm from "./SearchForm";
 import API from "../utils/API";
+import CollectionSeen from "./CollectionSeen";
+import SaveMovie from "./SaveMovie";
 import "../styles/SearchPage.css";
 
 class OmdbContainer extends Component {
@@ -11,7 +13,7 @@ class OmdbContainer extends Component {
   };
 
   componentDidMount() {
-    this.searchMovies("The Matrix");
+    this.searchMovies("John Wick");
   }
 
   searchMovies = (query) => {
@@ -19,7 +21,6 @@ class OmdbContainer extends Component {
       .then((res) => this.setState({ result: res.data }))
       .catch((err) => console.log(err));
   };
-  
 
   handleInputChange = (event) => {
     const value = event.target.value;
@@ -33,26 +34,26 @@ class OmdbContainer extends Component {
     event.preventDefault();
     this.searchMovies(this.state.search);
   };
-
+  // ---------------------------------------------------
   render() {
     return (
-
-      
       <div className="container d-flex flex-column align-content-center">
+        <h1 className="display-4 title text-white">myList: Movies </h1>
 
-    <h1 className="display-4 title">myList: Movies </h1>
-       
         <SearchForm
           value={this.state.search}
           handleInputChange={this.handleInputChange}
           handleFormSubmit={this.handleFormSubmit}
         />
-        <hr></hr>
+
+        <CollectionSeen />
+
         <MovieResults
           title={this.state.result.Title}
           src={this.state.result.Poster}
           released={this.state.result.Released}
         />
+        <SaveMovie />
       </div>
     );
   }

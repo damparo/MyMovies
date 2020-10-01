@@ -20,7 +20,7 @@ function SearchForm(props) {
           <div className="col-2">
             <button
               onClick={props.handleFormSubmit}
-              className="btn btn-primary search"
+              className="btn btn-danger search"
             >
               O
             </button>

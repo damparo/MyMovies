@@ -1,5 +1,5 @@
 .container {
-    margin-top: 10vh;
+    margin-top: 7vh;
    
 }
 
@@ -12,14 +12,39 @@ form{
     margin-top: 2vh;
 }
 
-.col-2{
+.col-2, .col-8, .col-3{
     padding-left: 0px;
     padding-right: 0px;
 }
-.col-8{
-    padding-left: 0px;
-    padding-right: 0px;
-}
+
+
 .search {
     width: 100%;
+}
+
+.library{
+    margin-bottom: 2vh;
+}
+
+.collectionBtn, .seenBtn {
+   width: 100%;
+   
+}
+
+
+.saverow {
+    margin-top: 0.5vh;
+    margin-bottom: 1.5vh;
+
+}
+.saveBtn {
+    width: 50%;
+    
+}
+
+
+.saveBtn {
+    margin-top: 3vh;
+    width: 50%;
+
 }
