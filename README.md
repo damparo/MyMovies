@@ -2,7 +2,7 @@
 
 ## Description
 
-An application that lets users create and share movie lists.  Works best for couples so they can keep track of movies they've seen or want to see.  Helps answer the question, "what movie should we watch tonight?"
+An application that lets users create and save movie lists.
 
 ## Getting Started
 
@@ -23,5 +23,5 @@ Dennis Amparo <br>
 See commit history [here](https://github.com/damparo/MyMovies/graphs/contributors).
 
 ## Planned Updates
-Future updates include updating the UI, log ins, and linking movie with streaming platform. 
+Future updates include updating the UI, log ins, and linking movie with streaming platforms. 
 
