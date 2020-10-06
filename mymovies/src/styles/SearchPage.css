@@ -33,18 +33,14 @@ form{
 
 
 .saverow {
-    margin-top: 0.5vh;
+    /* margin-top: 0.5vh; */
     margin-bottom: 1.5vh;
 
 }
 .saveBtn {
+   
+    margin-top: 3vh;
     width: 50%;
     
 }
 
-
-.saveBtn {
-    margin-top: 3vh;
-    width: 50%;
-
-}
