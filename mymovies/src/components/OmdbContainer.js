@@ -6,6 +6,7 @@ import API from "../utils/API";
 // import SeenBtn from "./SeenBtn";
 import SaveMovie from "./SaveMovie";
 import Collection from "./Collection";
+import Seen from "./Seen";
 import "../styles/SearchPage.css";
 import "../styles/Collection.css";
 
@@ -14,8 +15,8 @@ class OmdbContainer extends Component {
     result: {},
     search: "",
     displayCollectionOnly: false,
+    displaySeenOnly: false,
     hideMainPage: true,
-   
   };
 
   // constructor(props) {
@@ -41,11 +42,21 @@ class OmdbContainer extends Component {
   collectionClickHide = () => {
     this.setState({ displayCollectionOnly: false });
   };
+
   hideResultsMovies = () => {
     this.setState({ hideMainPage: false });
   };
-  displayResultsMovies= () => {
+
+  displayResultsMovies = () => {
     this.setState({ hideMainPage: true });
+  };
+
+  seenClick = () => {
+    this.setState({ displaySeenOnly: true });
+  };
+
+  seenClickHide = () => {
+    this.setState({ displaySeenOnly: false });
   };
 
   componentDidMount() {
@@ -85,16 +96,28 @@ class OmdbContainer extends Component {
         ) : null}
 
         {this.state.hideMainPage ? (
-          <button
-            type="button"
-            className="btn btn-secondary collectionBtn"
-            onClick={() => {
-              this.collectionClick();
-              this.hideResultsMovies();
-            }}
-          >
-            Collection
-          </button>
+          <div className="row options">
+            <div className="col">
+              <button
+                type="button"
+                className="btn btn-secondary collectionBtn"
+                onClick={() => {
+                  this.collectionClick();
+                  this.hideResultsMovies();
+                }}
+              >
+                Collection
+              </button>
+            </div>
+            <div className="col">
+              <button type="button" className="btn btn-info seenBtn" onClick={() => {
+                  this.seenClick();
+                  this.hideResultsMovies();
+                }}>
+                Seen
+              </button>
+            </div>
+          </div>
         ) : null}
 
         {/* <CollectionBtn onClick={this.collectionClick}/>
@@ -113,18 +136,51 @@ class OmdbContainer extends Component {
         {this.state.displayCollectionOnly ? (
           <div className="row options">
             <div className="col-6">
-              <button class="btn btn-success text-white" onClick={() => {
-              this.collectionClickHide();
-              this.displayResultsMovies();
-            }}>Search Movie</button>
+              <button
+                class="btn btn-success text-white"
+                onClick={() => {
+                  this.collectionClickHide();
+                  this.displayResultsMovies();
+                }}
+              >
+                Search Movie
+              </button>
             </div>
             <div className="col-6">
-              <button class="btn btn-info text-white">Seen</button>
+              <button class="btn btn-info text-white" onClick={() => {
+                  this.seenClick();
+                  this.hideResultsMovies();
+                  this.collectionClickHide()
+                }}>Seen</button>
             </div>
           </div>
         ) : null}
 
         {this.state.displayCollectionOnly ? <Collection /> : null}
+
+        {this.state.displaySeenOnly ? (
+          <div className="row options">
+            <div className="col-6">
+              <button
+                class="btn btn-success text-white"
+                onClick={() => {
+                  this.seenClickHide();
+                  this.displayResultsMovies();
+                }}
+              >
+                Search Movie
+              </button>
+            </div>
+            <div className="col-6">
+              <button class="btn btn-secondary text-white" onClick={() => {
+                  this.collectionClick();
+                  this.hideResultsMovies();
+                  this.seenClickHide();
+                }}>Collection</button>
+            </div>
+          </div>
+        ) : null}
+        {this.state.displaySeenOnly ? <Seen /> : null}
       </div>
     );
   }
