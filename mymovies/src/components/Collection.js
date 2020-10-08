@@ -3,9 +3,20 @@ import "../styles/Collection.css";
 
 function Collection() {
   return (
-    <div className="card">
-      <div className="card-body">This is some text within a card body.</div>
+
+    
+    
+
+
+    <div className="collectionhere text-white">
+        <h2>Your Collection</h2>
+        <div>
+      Movies go here - create loop to add connect saved movie with new card
+
+        </div>
     </div>
+
+
   );
 }
 

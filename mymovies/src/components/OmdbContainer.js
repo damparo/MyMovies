@@ -7,6 +7,7 @@ import API from "../utils/API";
 import SaveMovie from "./SaveMovie";
 import Collection from "./Collection";
 import "../styles/SearchPage.css";
+import "../styles/Collection.css";
 
 class OmdbContainer extends Component {
   state = {
@@ -14,6 +15,7 @@ class OmdbContainer extends Component {
     search: "",
     displayCollectionOnly: false,
     hideMainPage: true,
+   
   };
 
   // constructor(props) {
@@ -35,8 +37,15 @@ class OmdbContainer extends Component {
   collectionClick = () => {
     this.setState({ displayCollectionOnly: true });
   };
+
+  collectionClickHide = () => {
+    this.setState({ displayCollectionOnly: false });
+  };
   hideResultsMovies = () => {
     this.setState({ hideMainPage: false });
+  };
+  displayResultsMovies= () => {
+    this.setState({ hideMainPage: true });
   };
 
   componentDidMount() {
@@ -67,27 +76,29 @@ class OmdbContainer extends Component {
       <div className="container d-flex flex-column align-content-center">
         <h1 className="display-4 title text-white">myList: Movies </h1>
 
-        <SearchForm
-          value={this.state.search}
-          handleInputChange={this.handleInputChange}
-          handleFormSubmit={this.handleFormSubmit}
-        />
+        {this.state.hideMainPage ? (
+          <SearchForm
+            value={this.state.search}
+            handleInputChange={this.handleInputChange}
+            handleFormSubmit={this.handleFormSubmit}
+          />
+        ) : null}
 
-        <button
-          type="button"
-          className="btn btn-secondary collectionBtn"
-          onClick={() => {
-           this.collectionClick();
-            this.hideResultsMovies();
-          }}
-        >
-          Collection
-        </button>
+        {this.state.hideMainPage ? (
+          <button
+            type="button"
+            className="btn btn-secondary collectionBtn"
+            onClick={() => {
+              this.collectionClick();
+              this.hideResultsMovies();
+            }}
+          >
+            Collection
+          </button>
+        ) : null}
 
         {/* <CollectionBtn onClick={this.collectionClick}/>
         <SeenBtn/> */}
-
-        {this.state.displayCollectionOnly ? <Collection /> : null}
 
         {this.state.hideMainPage ? (
           <MovieResults
@@ -97,9 +108,23 @@ class OmdbContainer extends Component {
           />
         ) : null}
 
+        {this.state.hideMainPage ? <SaveMovie /> : null}
 
-{this.state.hideMainPage ? (
-        <SaveMovie /> ) : null}
+        {this.state.displayCollectionOnly ? (
+          <div className="row options">
+            <div className="col-6">
+              <button class="btn btn-success text-white" onClick={() => {
+              this.collectionClickHide();
+              this.displayResultsMovies();
+            }}>Search Movie</button>
+            </div>
+            <div className="col-6">
+              <button class="btn btn-info text-white">Seen</button>
+            </div>
+          </div>
+        ) : null}
+
+        {this.state.displayCollectionOnly ? <Collection /> : null}
       </div>
     );
   }
