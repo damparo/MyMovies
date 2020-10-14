@@ -4,36 +4,24 @@ import SearchForm from "./SearchForm";
 import API from "../utils/API";
 // import CollectionBtn from "./CollectionBtn";
 // import SeenBtn from "./SeenBtn";
-import SaveMovie from "./SaveMovie";
+// import SaveMovie from "./SaveMovie";
 import Collection from "./Collection";
 import Seen from "./Seen";
 import "../styles/SearchPage.css";
 import "../styles/Collection.css";
 
 class OmdbContainer extends Component {
-  state = {
-    result: {},
-    search: "",
-    displayCollectionOnly: false,
-    displaySeenOnly: false,
-    hideMainPage: true,
-  };
 
-  // constructor(props) {
-  //   this.collectionClick = this.collectionClick.bind(this);
-  //   this.state = {displayCollection: false};
-  // }
-  // collectionClick = () => {
-  //   this.setState({displayCollectionOnly: true});
-  // }
-  // hideResultsMovies = () => {
-  //   this.setState({hideResults: false});
-  // }
+ state = {
+      result: {},
+      search: "",
+      displayCollectionOnly: false,
+      displaySeenOnly: false,
+      hideMainPage: true,
+    };
+  
 
-  // onClick(event){
-  //   collectionClick();
-  //   hideResultsMovies();
-  //   }
+
 
   collectionClick = () => {
     this.setState({ displayCollectionOnly: true });
@@ -57,6 +45,13 @@ class OmdbContainer extends Component {
 
   seenClickHide = () => {
     this.setState({ displaySeenOnly: false });
+  };
+
+
+  saveClick = () => {
+    console.log("hello");
+   
+   
   };
 
   componentDidMount() {
@@ -110,18 +105,19 @@ class OmdbContainer extends Component {
               </button>
             </div>
             <div className="col">
-              <button type="button" className="btn btn-info seenBtn" onClick={() => {
+              <button
+                type="button"
+                className="btn btn-info seenBtn"
+                onClick={() => {
                   this.seenClick();
                   this.hideResultsMovies();
-                }}>
+                }}
+              >
                 Seen
               </button>
             </div>
           </div>
         ) : null}
-
-        {/* <CollectionBtn onClick={this.collectionClick}/>
-        <SeenBtn/> */}
 
         {this.state.hideMainPage ? (
           <MovieResults
@@ -131,13 +127,24 @@ class OmdbContainer extends Component {
           />
         ) : null}
 
-        {this.state.hideMainPage ? <SaveMovie /> : null}
+        {this.state.hideMainPage ? 
+        <div className="row justify-content-center saverow">
+         <button type="button" className="btn btn-light saveBtn" onClick={
+           this.saveClick} 
+        
+         >
+         Save
+       </button>
+       </div>
+         : null}
+{/* --------------------------------------- */}
+        {/* collection and seen pages, SPA - refactor code into components more */}
 
         {this.state.displayCollectionOnly ? (
           <div className="row options">
             <div className="col-6">
               <button
-                class="btn btn-success text-white"
+                className="btn btn-success text-white"
                 onClick={() => {
                   this.collectionClickHide();
                   this.displayResultsMovies();
@@ -147,11 +154,16 @@ class OmdbContainer extends Component {
               </button>
             </div>
             <div className="col-6">
-              <button class="btn btn-info text-white" onClick={() => {
+              <button
+                className="btn btn-info text-white"
+                onClick={() => {
                   this.seenClick();
                   this.hideResultsMovies();
-                  this.collectionClickHide()
-                }}>Seen</button>
+                  this.collectionClickHide();
+                }}
+              >
+                Seen
+              </button>
             </div>
           </div>
         ) : null}
@@ -162,7 +174,7 @@ class OmdbContainer extends Component {
           <div className="row options">
             <div className="col-6">
               <button
-                class="btn btn-success text-white"
+                className="btn btn-success text-white"
                 onClick={() => {
                   this.seenClickHide();
                   this.displayResultsMovies();
@@ -172,11 +184,16 @@ class OmdbContainer extends Component {
               </button>
             </div>
             <div className="col-6">
-              <button class="btn btn-secondary text-white" onClick={() => {
+              <button
+                className="btn btn-secondary text-white"
+                onClick={() => {
                   this.collectionClick();
                   this.hideResultsMovies();
                   this.seenClickHide();
-                }}>Collection</button>
+                }}
+              >
+                Collection
+              </button>
             </div>
           </div>
         ) : null}
