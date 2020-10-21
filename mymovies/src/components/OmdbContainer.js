@@ -10,6 +10,7 @@ import Seen from "./Seen";
 import "../styles/SearchPage.css";
 import "../styles/Collection.css";
 
+
 class OmdbContainer extends Component {
 
  state = {
@@ -18,10 +19,24 @@ class OmdbContainer extends Component {
       displayCollectionOnly: false,
       displaySeenOnly: false,
       hideMainPage: true,
+      saveMovie: false,
+      movies: []
     };
+
+
+
   
+    saveClick = () => {
+    
+      console.log("hello");
+      // this.setState({result: {}});
+    
+      
+  
+     
+    }
 
-
+ 
 
   collectionClick = () => {
     this.setState({ displayCollectionOnly: true });
@@ -48,11 +63,9 @@ class OmdbContainer extends Component {
   };
 
 
-  saveClick = () => {
-    console.log("hello");
-   
-   
-  };
+  
+
+ 
 
   componentDidMount() {
     this.searchMovies("John Wick");
@@ -77,6 +90,9 @@ class OmdbContainer extends Component {
     this.searchMovies(this.state.search);
   };
   // ---------------------------------------------------
+  
+ 
+  
   render() {
     return (
       <div className="container d-flex flex-column align-content-center">
@@ -124,14 +140,23 @@ class OmdbContainer extends Component {
             title={this.state.result.Title}
             src={this.state.result.Poster}
             released={this.state.result.Released}
+
+
+
           />
         ) : null}
 
         {this.state.hideMainPage ? 
         <div className="row justify-content-center saverow">
-         <button type="button" className="btn btn-light saveBtn" onClick={
-           this.saveClick} 
+         <button type="button" className="btn btn-light saveBtn" 
         
+       
+        onClick = {this.saveClick}
+
+
+
+
+      
          >
          Save
        </button>
@@ -168,7 +193,16 @@ class OmdbContainer extends Component {
           </div>
         ) : null}
 
-        {this.state.displayCollectionOnly ? <Collection /> : null}
+        {this.state.displayCollectionOnly ? 
+        <Collection 
+
+        // title={this.state.result.Title}
+        // src={this.state.result.Poster}
+        // released={this.state.result.Released}
+
+        
+        
+        /> : null}
 
         {this.state.displaySeenOnly ? (
           <div className="row options">
@@ -197,6 +231,8 @@ class OmdbContainer extends Component {
             </div>
           </div>
         ) : null}
+
+
         {this.state.displaySeenOnly ? <Seen /> : null}
       </div>
     );
