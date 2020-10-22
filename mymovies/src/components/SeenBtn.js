@@ -1,20 +1,16 @@
 import React from "react";
 import "../styles/SearchPage.css";
 
-function SeenBtn() {
+function SeenBtn(props) {
   return (
-    // <div className="row justify-content-center library">
-    //   <div className="col-3">
-        <button type="button" className="btn btn-secondary seenBtn">
+        <button type="button" className="btn btn-info seenBtn"
+        onClick={() => {
+          props.seenClick();
+          props.hideResultsMovies();
+          props.collectionClickHide();
+        }}>
           Seen
         </button>
-    //   </div>
-    //   <div className="col-3">
-    //     <button type="button" className="btn btn-info seenBtn">
-    //       Seen
-    //     </button>
-    //   </div>
-    // </div>
   );
 }
 
