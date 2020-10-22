@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MovieResults from "./MovieResults";
 import SearchForm from "./SearchForm";
 import API from "../utils/API";
+import BannerName from "../components/BannerName";
 // import CollectionBtn from "./CollectionBtn";
 // import SeenBtn from "./SeenBtn";
 // import SaveMovie from "./SaveMovie";
@@ -10,33 +11,21 @@ import Seen from "./Seen";
 import "../styles/SearchPage.css";
 import "../styles/Collection.css";
 
-
 class OmdbContainer extends Component {
+  state = {
+    result: {},
+    search: "",
+    displayCollectionOnly: false,
+    displaySeenOnly: false,
+    hideMainPage: true,
+    saveMovie: false,
+    movies: [],
+  };
 
- state = {
-      result: {},
-      search: "",
-      displayCollectionOnly: false,
-      displaySeenOnly: false,
-      hideMainPage: true,
-      saveMovie: false,
-      movies: []
-    };
-
-
-
-  
-    saveClick = () => {
-    
-      console.log("hello");
-      // this.setState({result: {}});
-    
-      
-  
-     
-    }
-
- 
+  saveClick = () => {
+    console.log("hello");
+    // this.setState({result: {}});
+  };
 
   collectionClick = () => {
     this.setState({ displayCollectionOnly: true });
@@ -62,11 +51,6 @@ class OmdbContainer extends Component {
     this.setState({ displaySeenOnly: false });
   };
 
-
-  
-
- 
-
   componentDidMount() {
     this.searchMovies("John Wick");
   }
@@ -90,14 +74,14 @@ class OmdbContainer extends Component {
     this.searchMovies(this.state.search);
   };
   // ---------------------------------------------------
-  
- 
-  
+
   render() {
     return (
       <div className="container d-flex flex-column align-content-center">
-        <h1 className="display-4 title text-white">myList: Movies </h1>
-
+        {/* <h1 className="display-4 title text-white">myList: Movies </h1> */}
+      <BannerName
+        sitename="myList: Movies"
+      />
         {this.state.hideMainPage ? (
           <SearchForm
             value={this.state.search}
@@ -140,29 +124,21 @@ class OmdbContainer extends Component {
             title={this.state.result.Title}
             src={this.state.result.Poster}
             released={this.state.result.Released}
-
-
-
           />
         ) : null}
 
-        {this.state.hideMainPage ? 
-        <div className="row justify-content-center saverow">
-         <button type="button" className="btn btn-light saveBtn" 
-        
-       
-        onClick = {this.saveClick}
-
-
-
-
-      
-         >
-         Save
-       </button>
-       </div>
-         : null}
-{/* --------------------------------------- */}
+        {this.state.hideMainPage ? (
+          <div className="row justify-content-center saverow">
+            <button
+              type="button"
+              className="btn btn-light saveBtn"
+              onClick={this.saveClick}
+            >
+              Save
+            </button>
+          </div>
+        ) : null}
+        {/* --------------------------------------- */}
         {/* collection and seen pages, SPA - refactor code into components more */}
 
         {this.state.displayCollectionOnly ? (
@@ -193,16 +169,14 @@ class OmdbContainer extends Component {
           </div>
         ) : null}
 
-        {this.state.displayCollectionOnly ? 
-        <Collection 
+        {this.state.displayCollectionOnly ? (
+          <Collection
 
-        // title={this.state.result.Title}
-        // src={this.state.result.Poster}
-        // released={this.state.result.Released}
-
-        
-        
-        /> : null}
+          // title={this.state.result.Title}
+          // src={this.state.result.Poster}
+          // released={this.state.result.Released}
+          />
+        ) : null}
 
         {this.state.displaySeenOnly ? (
           <div className="row options">
@@ -231,7 +205,6 @@ class OmdbContainer extends Component {
             </div>
           </div>
         ) : null}
-
 
         {this.state.displaySeenOnly ? <Seen /> : null}
       </div>
