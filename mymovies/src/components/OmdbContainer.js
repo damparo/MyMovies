@@ -3,7 +3,7 @@ import MovieResults from "./MovieResults";
 import SearchForm from "./SearchForm";
 import API from "../utils/API";
 import BannerName from "../components/BannerName";
-// import CollectionBtn from "./CollectionBtn";
+import CollectionBtn from "./CollectionBtn";
 // import SeenBtn from "./SeenBtn";
 // import SaveMovie from "./SaveMovie";
 import Collection from "./Collection";
@@ -78,10 +78,7 @@ class OmdbContainer extends Component {
   render() {
     return (
       <div className="container d-flex flex-column align-content-center">
-        {/* <h1 className="display-4 title text-white">myList: Movies </h1> */}
-      <BannerName
-        sitename="myList: Movies"
-      />
+        <BannerName sitename="myList: Movies" />
         {this.state.hideMainPage ? (
           <SearchForm
             value={this.state.search}
@@ -93,7 +90,14 @@ class OmdbContainer extends Component {
         {this.state.hideMainPage ? (
           <div className="row options">
             <div className="col">
-              <button
+              <CollectionBtn
+                
+                  collectionClick ={this.collectionClick}
+                  hideResultsMovies={this.hideResultsMovies}
+              
+              />
+
+              {/* <button
                 type="button"
                 className="btn btn-secondary collectionBtn"
                 onClick={() => {
@@ -102,7 +106,7 @@ class OmdbContainer extends Component {
                 }}
               >
                 Collection
-              </button>
+              </button> */}
             </div>
             <div className="col">
               <button

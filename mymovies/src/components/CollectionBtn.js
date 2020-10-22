@@ -1,11 +1,16 @@
 import React from "react";
 import "../styles/SearchPage.css";
 
-function CollectionBtn() {
+function CollectionBtn(props) {
   return (
     // <div className="row justify-content-center library">
     //   <div className="col-3">
-        <button type="button" className="btn btn-secondary collectionBtn">
+        <button type="button" className="btn btn-secondary collectionBtn"
+        onClick={() => {
+          props.collectionClick();
+          props.hideResultsMovies();
+        }}
+        >
           Collection
         </button>
     //   </div>
